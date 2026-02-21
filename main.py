@@ -82,7 +82,7 @@ def vraag_recept_index():
             keuze = int(input(f"Welk recept wil je zien? (Typ het nummer): "))
             return keuze - 1
         except ValueError:
-            print(f"Voer alstublieft een geldig nummer in.")
+            print(f"{color('Voer alstublieft een geldig nummer in.', Colors.ERROR)}")
 
 def vraag_aantal_personen():
     invoer = input(
@@ -131,6 +131,6 @@ def main():
 
         print("\n" + str(gekozen_recept))
     else:
-        print(f"{Colors.ERROR}Ongeldige keuze.{Colors.RESET}")
+        print(color("Ongeldige keuze.", Colors.ERROR))
 
 main()

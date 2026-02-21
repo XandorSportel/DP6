@@ -1,3 +1,4 @@
+from src.helpers.formatter import color
 from src.console.Colors import Colors
 
 class Recept:
@@ -53,9 +54,9 @@ class Recept:
         stappen = "\n".join(f"{index+1}. {str(stap)}" for index, stap in enumerate(self.__stappen))
     
         return (
-            f"{Colors.INFO}Recept: {Colors.RESET}{self.__naam}\n"
-            f"{Colors.INFO}Omschrijving: {Colors.RESET}{self.__omschrijving}\n"
-            f"{Colors.INFO}Aantal personen: {Colors.RESET}{self.__aantal_personen}\n\n"
-            f"{Colors.INFO}Ingredienten: {Colors.RESET}\n{ingredienten}\n\n"
-            f"{Colors.INFO}Stappen: {Colors.RESET}\n{stappen}\n"
+            f"{color('Recept:', Colors.INFO)} {self.__naam}\n"
+            f"{color('Omschrijving:', Colors.INFO)} {self.__omschrijving}\n"
+            f"{color('Aantal personen:', Colors.INFO)} {self.__aantal_personen}\n\n"
+            f"{color('Ingredienten:', Colors.INFO)}\n{ingredienten}\n\n"
+            f"{color('Stappen:', Colors.INFO)}\n{stappen}\n"
         )
