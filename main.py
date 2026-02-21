@@ -19,7 +19,7 @@ def init():
     recept1.voeg_ingredient_toe(Ingredient("Eieren", 2, "stuks", 140))
     recept1.voeg_ingredient_toe(Ingredient("Zout", 1, "snufje", 0))
 
-    recept1.voeg_stap_toe(Stap("Doe 500 gram van het meel in een beslagkom en voeg de melk, de eieren en het zout toe."))
+    recept1.voeg_stap_toe(Stap("Doe 500 gram van het meel in een beslagkom en voeg de melk, de eieren en het zout toe.", "Je kunt ook een beetje kaneel toevoegen voor extra smaak!"))
     recept1.voeg_stap_toe(Stap("Roer het geheel met een garde of mixer tot een glad beslag."))
     recept1.voeg_stap_toe(Stap("Verhit een klontje boter of een scheutje olie in een koekenpan."))
     recept1.voeg_stap_toe(Stap("Giet wat beslag in de pan, laat het uitlopen over de bodem en bak de pannenkoeken aan beide zijden goudbruin."))
