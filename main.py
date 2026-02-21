@@ -3,6 +3,9 @@ from src.classes.Receptenboek import Receptenboek
 from src.classes.Ingredient import Ingredient
 from src.classes.Stap import Stap
 
+from src.helpers.formatter import color
+from src.console.Colors import Colors
+
 # Globals
 mijn_receptenboek = None
 
@@ -73,28 +76,61 @@ def init():
 
     mijn_receptenboek.voeg_recept_toe(recept3)
 
+def vraag_recept_index():
+    while True:
+        try:
+            keuze = int(input(f"Welk recept wil je zien? (Typ het nummer): "))
+            return keuze - 1
+        except ValueError:
+            print(f"Voer alstublieft een geldig nummer in.")
+
+def vraag_aantal_personen():
+    invoer = input(
+        f"Voor hoeveel personen wil je het recept aanpassen? "
+        f"(Druk {color('Enter', Colors.WARNING)} voor {color('1', Colors.WARNING)} persoon): "
+    )
+
+    if invoer == "":
+        return 1
+
+    try:
+        personen = int(invoer)
+        if personen > 0:
+            return personen
+    except ValueError:
+        pass
+
+    print(f"{color('Ongeldige invoer. Recept wordt voor 1 persoon weergegeven.', Colors.WARNING)}")
+    return 1
+
+def vraag_plantaardig():
+    while True:
+        invoer = input(f"Wil je een plantaardig alternatief? ({color('ja', Colors.OK)}/{color('nee', Colors.ERROR)}): ").lower()
+
+        if invoer in ["ja", "nee"]:
+            return invoer == "ja"
+
+        print(f"{color('Ongeldige invoer. Typ \'ja\' of \'nee\'.', Colors.WARNING)}")
+
 def main():
     init()
 
     print(mijn_receptenboek.get_recepten())
 
-    recept_number = input("Welk recept wil je zien? (Typ het nummer): ")
-    aantal_personen = input("Voor hoeveel personen wil je het recept aanpassen? (Typ een getal, of druk op Enter om het recept voor 1 persoon te krijgen): ")
-    plantaardig = input("Wil je een plantaardige versie van het recept? (Typ 'ja' of 'nee'): ").lower() == 'ja'
+    index = vraag_recept_index()
+    recept_namen = list(mijn_receptenboek.recepten.keys())
 
-    try:
-        index = int(recept_number) - 1
-        recept_namen = list(mijn_receptenboek.recepten.keys())
-        if 0 <= index < len(recept_namen):
-            gekozen_recept = mijn_receptenboek.get_recept(recept_namen[index])
-            if aantal_personen:
-                gekozen_recept.set_aantal_personen(int(aantal_personen))
-            if plantaardig:
-                gekozen_recept.set_plantaardig(True)
-            print("\n" + str(gekozen_recept))
-        else:
-            print("Ongeldige keuze.")
-    except ValueError:
-        print("Voer alstublieft een geldig nummer in.")
+    if 0 <= index < len(recept_namen):
+        gekozen_recept = mijn_receptenboek.get_recept(recept_namen[index])
+
+        personen = vraag_aantal_personen()
+        gekozen_recept.set_aantal_personen(personen)
+
+        plantaardig = vraag_plantaardig()
+        gekozen_recept.set_plantaardig(plantaardig)
+
+        print("\n" + str(gekozen_recept))
+    else:
+        print(f"{Colors.ERROR}Ongeldige keuze.{Colors.RESET}")
 
 main()
