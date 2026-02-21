@@ -1,11 +1,20 @@
-from src.helpers.formatter import color
 from src.console.Colors import Colors
+from src.database.recept_repository import ReceptRepository
+from src.helpers.formatter import color
 
 class Receptenboek:
     def __init__(self):
+        self.repository = ReceptRepository()
         self.recepten = {}
+        self.load_from_database()
+
+    def load_from_database(self):
+        recepten = self.repository.get_all()
+        for recept in recepten:
+            self.recepten[recept.get_naam()] = recept
 
     def voeg_recept_toe(self, recept):
+        self.repository.save(recept)
         self.recepten[recept.get_naam()] = recept
 
     def get_recept(self, naam):
@@ -19,8 +28,11 @@ class Receptenboek:
         )
 
     def verwijder_recept(self, naam):
-        if naam in self.recepten:
-            del self.recepten[naam]
+        success = self.repository.delete(naam)
+
+        if success:
+            if naam in self.recepten:
+                del self.recepten[naam]
             return f"Recept '{naam}' verwijderd."
         else:
-            return color("Recept niet gevonden", Colors.WARNING)
+            return color("Recept niet gevonden in database.", Colors.WARNING)

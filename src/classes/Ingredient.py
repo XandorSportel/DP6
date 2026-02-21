@@ -6,11 +6,20 @@ class Ingredient:
         self.__kcal = kcal
         self.__plantaardig_alternatief = None
 
+    def get_naam(self):
+        return self.__naam
+
     def get_hoeveelheid(self):
         return self.__hoeveelheid
     
+    def get_eenheid(self):
+        return self.__eenheid
+    
     def get_kcal(self):
         return self.__kcal
+    
+    def heeft_plantaardig_alternatief(self):
+        return self.__plantaardig_alternatief
     
     def get_ingredient(self, plantaardig):
         if plantaardig and self.__plantaardig_alternatief is not None:
