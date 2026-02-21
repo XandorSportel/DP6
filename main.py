@@ -76,6 +76,98 @@ def init():
 
     mijn_receptenboek.voeg_recept_toe(recept3)
 
+def toon_keuzemenu():
+    print("\n" + f"{color('='*20, Colors.INFO)} {color('Opties', Colors.HEADER)} {color('='*20, Colors.INFO)}")
+    print(f"{color('1', Colors.OK)}. Toon overzicht recepten")
+    print(f"{color('2', Colors.OK)}. Voeg nieuw recept toe")
+    print(f"{color('3', Colors.OK)}. Exit")
+    print(f"{color('='*48, Colors.INFO)}")
+
+def toon_overzicht():
+    print("\n" + mijn_receptenboek.get_recepten())
+
+    index = vraag_recept_index()
+    recept_namen = list(mijn_receptenboek.recepten.keys())
+
+    if 0 <= index < len(recept_namen):
+        gekozen_recept = mijn_receptenboek.get_recept(recept_namen[index])
+
+        personen = vraag_aantal_personen()
+        gekozen_recept.set_aantal_personen(personen)
+
+        plantaardig = vraag_plantaardig()
+        gekozen_recept.set_plantaardig(plantaardig)
+
+        print("\n" + str(gekozen_recept))
+
+        print("\n" + f"{color('='*20, Colors.INFO)} {color('Opties', Colors.HEADER)} {color('='*20, Colors.INFO)}")
+        print(f"{color('1', Colors.ERROR)}. Verwijder dit recept")
+        print(f"{color('2', Colors.OK)}. Terug naar overzicht")
+        print(f"{color('='*48, Colors.INFO)}")
+
+        keuze = input("Maak een keuze: ")
+
+        if keuze == "1":
+            bevestig = input(f"Weet je het zeker? ({color('ja', Colors.OK)}/{color('nee', Colors.ERROR)}): ").lower()
+            if bevestig == "ja":
+                mijn_receptenboek.verwijder_recept(gekozen_recept.get_naam())
+                print(color("Recept verwijderd.", Colors.OK))
+    elif index == len(recept_namen):
+        return
+    else:
+        print(color("Ongeldige keuze.", Colors.ERROR))
+
+def voeg_recept_toe_via_input():
+    print(f"\n{color('Nieuw recept toevoegen', Colors.HEADER)}")
+
+    naam = input("Naam recept: ")
+    omschrijving = input("Omschrijving: ")
+
+    nieuw_recept = Recept(naam, omschrijving)
+
+    # Ingredient loop
+    while True:
+        voeg_ingredient = input(f"Ingrediënt toevoegen? ({color('ja', Colors.OK)}/{color('nee', Colors.ERROR)}): ").lower()
+        if voeg_ingredient != "ja":
+            break
+
+        ingredient_naam = input("Naam ingrediënt: ")
+        hoeveelheid = float(input("Hoeveelheid: "))
+        eenheid = input("Eenheid: ")
+        kcal = int(input("Aantal kcal: "))
+
+        ingredient = Ingredient(ingredient_naam, hoeveelheid, eenheid, kcal)
+
+        # Plantaardig alternatief
+        alternatief_keuze = input(f"Plantaardig alternatief toevoegen? ({color('ja', Colors.OK)}/{color('nee', Colors.ERROR)}): ").lower()
+        if alternatief_keuze == "ja":
+            alternatief_naam = input("Naam alternatief: ")
+            alternatief_hoeveelheid = float(input("Hoeveelheid alternatief: "))
+            alternatief_eenheid = input("Eenheid alternatief: ")
+            alternatief_kcal = int(input("Aantal kcal alternatief: "))
+
+            alternatief = Ingredient(alternatief_naam, alternatief_hoeveelheid, alternatief_eenheid, alternatief_kcal)
+            ingredient.set_plantaardig_alternatief(alternatief)
+
+        nieuw_recept.voeg_ingredient_toe(ingredient)
+
+    # Steps loop
+    while True:
+        voeg_stap = input(f"Stap toevoegen? ({color('ja', Colors.OK)}/{color('nee', Colors.ERROR)}): ").lower()
+        if voeg_stap != "ja":
+            break
+
+        beschrijving = input("Beschrijving stap: ")
+        tip = input("Tip (optioneel, druk Enter om over te slaan): ")
+
+        if tip == "":
+            nieuw_recept.voeg_stap_toe(Stap(beschrijving))
+        else:
+            nieuw_recept.voeg_stap_toe(Stap(beschrijving, tip))
+
+    mijn_receptenboek.voeg_recept_toe(nieuw_recept)
+    print(color("Recept succesvol toegevoegd.", Colors.OK))
+
 def vraag_recept_index():
     while True:
         try:
@@ -115,22 +207,18 @@ def vraag_plantaardig():
 def main():
     init()
 
-    print(mijn_receptenboek.get_recepten())
+    while True:
+        toon_keuzemenu()
+        keuze = input("Maak een keuze: ")
 
-    index = vraag_recept_index()
-    recept_namen = list(mijn_receptenboek.recepten.keys())
-
-    if 0 <= index < len(recept_namen):
-        gekozen_recept = mijn_receptenboek.get_recept(recept_namen[index])
-
-        personen = vraag_aantal_personen()
-        gekozen_recept.set_aantal_personen(personen)
-
-        plantaardig = vraag_plantaardig()
-        gekozen_recept.set_plantaardig(plantaardig)
-
-        print("\n" + str(gekozen_recept))
-    else:
-        print(color("Ongeldige keuze.", Colors.ERROR))
+        if keuze == "1":
+            toon_overzicht()
+        elif keuze == "2":
+            voeg_recept_toe_via_input()
+        elif keuze == "3":
+            print(f"{color('Programma afgesloten.', Colors.OK)}")
+            break
+        else:
+            print(color("Ongeldige keuze.", Colors.ERROR))
 
 main()

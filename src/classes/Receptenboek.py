@@ -13,7 +13,10 @@ class Receptenboek:
     
     def get_recepten(self):
         recepten = "\n".join(f"{Colors.OK}{Colors.BOLD}[{index+1}]{Colors.RESET} {recept.get_naam()} - {recept.get_omschrijving()}" for index, recept in enumerate(self.recepten.values()))
-        return f"{color('Recepten in het boek:', Colors.HEADER)}\n{recepten}"
+        return (
+            f"{color('Recepten in het boek:', Colors.HEADER)}\n{recepten}"
+            f"\n{color('[' + str(len(self.recepten) + 1) + ']', Colors.WARNING)} Terug naar hoofdmenu"
+        )
 
     def verwijder_recept(self, naam):
         if naam in self.recepten:
