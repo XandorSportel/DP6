@@ -29,7 +29,14 @@ def init():
 
     # Recept 2: Kip Rendang
     recept2 = Recept("Kip Rendang", "Een smaakvol Indonesisch gerecht")
-    recept2.voeg_ingredient_toe(Ingredient("Kip", 300, "gram", 600))
+
+    # Vegetarisch alternatief voor kip
+    kip = Ingredient("Kip", 300, "gram", 600)
+    veg_kip = Ingredient("Vegetarische kipstukjes", 300, "gram", 450)
+
+    kip.set_plantaardig_alternatief(veg_kip)
+
+    recept2.voeg_ingredient_toe(kip)
     recept2.voeg_ingredient_toe(Ingredient("Kokosmelk", 200, "ml", 400))
     recept2.voeg_ingredient_toe(Ingredient("Stengel citroengras", 1, "stuk", 5))
     recept2.voeg_ingredient_toe(Ingredient("Ui", 1, "stuk", 40))
