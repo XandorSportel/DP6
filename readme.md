@@ -7,7 +7,7 @@ git log --pretty=format:"-------%n%h %ad [%an] | %B" --date=format:"%Y-%m-%d %H:
 | Package | Command |
 | ---------- | ---------- |
 | dotenv | pip install python-dotenv |
-| mysql-connector | mysql-connector-python |
+| mysql-connector | pip install mysql-connector-python |
 | reportlab | pip install reportlab |
 
 # Bronnen
