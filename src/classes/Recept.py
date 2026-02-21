@@ -1,3 +1,5 @@
+from src.console.Colors import Colors
+
 class Recept:
     def __init__(self, naam, omschrijving, aantal_personen=1):
         self.__naam = naam
@@ -51,9 +53,9 @@ class Recept:
         stappen = "\n".join(f"{index+1}. {str(stap)}" for index, stap in enumerate(self.__stappen))
     
         return (
-            f"Recept: {self.__naam}\n"
-            f"Omschrijving: {self.__omschrijving}\n"
-            f"Aantal personen: {self.__aantal_personen}\n\n"
-            f"Ingredienten: \n{ingredienten}\n\n"
-            f"Stappen: \n{stappen}"
+            f"{Colors.INFO}Recept: {Colors.RESET}{self.__naam}\n"
+            f"{Colors.INFO}Omschrijving: {Colors.RESET}{self.__omschrijving}\n"
+            f"{Colors.INFO}Aantal personen: {Colors.RESET}{self.__aantal_personen}\n\n"
+            f"{Colors.INFO}Ingredienten: {Colors.RESET}\n{ingredienten}\n\n"
+            f"{Colors.INFO}Stappen: {Colors.RESET}\n{stappen}\n"
         )
