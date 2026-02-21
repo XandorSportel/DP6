@@ -8,6 +8,9 @@ class Recept:
     def get_naam(self):
         return self.__naam
     
+    def get_beschrijving(self):
+        return self.__omschrijving
+    
     def get_ingredienten(self):
         return self.__ingredienten
     
