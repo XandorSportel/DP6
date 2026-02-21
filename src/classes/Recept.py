@@ -22,11 +22,11 @@ class Recept:
 
     def __str__(self):
         ingredienten = "\n".join(f"• {str(i)}" for i in self.__ingredienten)
-        stappen = '; '.join(f"{i+1}. {str(s)}" for i, s in enumerate(self.__stappen))
+        stappen = "\n".join(f"{i+1}. {str(s)}" for i, s in enumerate(self.__stappen))
     
         return (
             f"Recept: {self.__naam}\n"
-            f"Omschrijving: {self.__omschrijving}\n"
-            f"Ingredienten: \n{ingredienten}\n"
+            f"Omschrijving: {self.__omschrijving}\n\n"
+            f"Ingredienten: \n{ingredienten}\n\n"
             f"Stappen: \n{stappen}"
         )
