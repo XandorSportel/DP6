@@ -9,7 +9,7 @@ class Receptenboek:
         return self.recepten.get(naam, "Recept niet gevonden")
     
     def get_recepten(self):
-        recepten = "\n".join(f"[{index+1}] {recept.get_naam()} - {recept.get_beschrijving()}" for index, recept in enumerate(self.recepten.values()))
+        recepten = "\n".join(f"[{index+1}] {recept.get_naam()} - {recept.get_omschrijving()}" for index, recept in enumerate(self.recepten.values()))
         return f"Recepten in het boek:\n{recepten}"
 
     def verwijder_recept(self, naam):
