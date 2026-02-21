@@ -32,4 +32,16 @@ def main():
 
     print(mijn_receptenboek.get_recepten())
 
+    user_input = input("Welk recept wil je zien? (Typ het nummer): ")
+    try:
+        index = int(user_input) - 1
+        recept_namen = list(mijn_receptenboek.recepten.keys())
+        if 0 <= index < len(recept_namen):
+            gekozen_recept = mijn_receptenboek.get_recept(recept_namen[index])
+            print(gekozen_recept)
+        else:
+            print("Ongeldige keuze.")
+    except ValueError:
+        print("Voer alstublieft een geldig nummer in.")
+
 main()
