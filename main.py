@@ -3,6 +3,9 @@ from src.classes.Receptenboek import Receptenboek
 from src.classes.Ingredient import Ingredient
 from src.classes.Stap import Stap
 
+from src.helpers.formatter import color
+from src.console.Colors import Colors
+
 # Globals
 mijn_receptenboek = None
 
@@ -14,12 +17,12 @@ def init():
 
     # Recept 1: Pannenkoeken
     recept1 = Recept("Pannenkoeken", "Heerlijke Nederlandse pannenkoeken")
-    recept1.voeg_ingredient_toe(Ingredient("Koopmans Pannenkoekmeel Kabouter", 500, "gram"))
-    recept1.voeg_ingredient_toe(Ingredient("Melk", 1000, "ml"))
-    recept1.voeg_ingredient_toe(Ingredient("Eieren", 2, "stuks"))
-    recept1.voeg_ingredient_toe(Ingredient("Zout", 1, "snufje"))
+    recept1.voeg_ingredient_toe(Ingredient("Koopmans Pannenkoekmeel Kabouter", 500, "gram", 890))
+    recept1.voeg_ingredient_toe(Ingredient("Melk", 1000, "ml", 650))
+    recept1.voeg_ingredient_toe(Ingredient("Eieren", 2, "stuks", 140))
+    recept1.voeg_ingredient_toe(Ingredient("Zout", 1, "snufje", 0))
 
-    recept1.voeg_stap_toe(Stap("Doe 500 gram van het meel in een beslagkom en voeg de melk, de eieren en het zout toe."))
+    recept1.voeg_stap_toe(Stap("Doe 500 gram van het meel in een beslagkom en voeg de melk, de eieren en het zout toe.", "Je kunt ook een beetje kaneel toevoegen voor extra smaak!"))
     recept1.voeg_stap_toe(Stap("Roer het geheel met een garde of mixer tot een glad beslag."))
     recept1.voeg_stap_toe(Stap("Verhit een klontje boter of een scheutje olie in een koekenpan."))
     recept1.voeg_stap_toe(Stap("Giet wat beslag in de pan, laat het uitlopen over de bodem en bak de pannenkoeken aan beide zijden goudbruin."))
@@ -29,16 +32,23 @@ def init():
 
     # Recept 2: Kip Rendang
     recept2 = Recept("Kip Rendang", "Een smaakvol Indonesisch gerecht")
-    recept2.voeg_ingredient_toe(Ingredient("Kip", 300, "gram"))
-    recept2.voeg_ingredient_toe(Ingredient("Kokosmelk", 200, "ml"))
-    recept2.voeg_ingredient_toe(Ingredient("Stengel citroengras", 1, "stuk"))
-    recept2.voeg_ingredient_toe(Ingredient("Ui", 1, "stuk"))
-    recept2.voeg_ingredient_toe(Ingredient("Knoflook", 2, "tenen"))
-    recept2.voeg_ingredient_toe(Ingredient("Gember", 1, "stuk"))
-    recept2.voeg_ingredient_toe(Ingredient("Ketjap manis", 25, "ml"))
-    recept2.voeg_ingredient_toe(Ingredient("Komijn", 1, "tl"))
-    recept2.voeg_ingredient_toe(Ingredient("Koriander", 1, "tl"))
-    recept2.voeg_ingredient_toe(Ingredient("Zout en peper", 1, "snufje"))
+
+    # Vegetarisch alternatief voor kip
+    kip = Ingredient("Kip", 300, "gram", 600)
+    veg_kip = Ingredient("Vegetarische kipstukjes", 300, "gram", 450)
+
+    kip.set_plantaardig_alternatief(veg_kip)
+
+    recept2.voeg_ingredient_toe(kip)
+    recept2.voeg_ingredient_toe(Ingredient("Kokosmelk", 200, "ml", 400))
+    recept2.voeg_ingredient_toe(Ingredient("Stengel citroengras", 1, "stuk", 5))
+    recept2.voeg_ingredient_toe(Ingredient("Ui", 1, "stuk", 40))
+    recept2.voeg_ingredient_toe(Ingredient("Knoflook", 2, "tenen", 10))
+    recept2.voeg_ingredient_toe(Ingredient("Gember", 1, "stuk", 5))
+    recept2.voeg_ingredient_toe(Ingredient("Ketjap manis", 25, "ml", 70))
+    recept2.voeg_ingredient_toe(Ingredient("Komijn", 1, "tl", 8))
+    recept2.voeg_ingredient_toe(Ingredient("Koriander", 1, "tl", 5))
+    recept2.voeg_ingredient_toe(Ingredient("Zout en peper", 1, "snufje", 0))
 
     recept2.voeg_stap_toe(Stap("Schil de gember en snijd vervolgens in kleine stukjes. Snipper de uit, snijd de tenen knoflook fijn en snijd de sereh in stukken."))
     recept2.voeg_stap_toe(Stap("Doe vervolgens de gember, ui, knoflook en sereh samen met de rode peper, koriander, komijn en een scheutje olijfolie in een keukenmachine. Hak alles tot er een soort kruidenpasta overblijft."))
@@ -52,11 +62,11 @@ def init():
 
     # Recept 3: Broodje Hamburger
     recept3 = Recept("Broodje Hamburger", "Een lekker broodje hamburger")
-    recept3.voeg_ingredient_toe(Ingredient("Hamburgerbroodje", 2, "stuks"))
-    recept3.voeg_ingredient_toe(Ingredient("Hamburger", 2, "stuks"))
-    recept3.voeg_ingredient_toe(Ingredient("Mayo", 1, "el"))
-    recept3.voeg_ingredient_toe(Ingredient("Curry", 1, "el"))
-    recept3.voeg_ingredient_toe(Ingredient("Ui", 0.5, "stuk"))
+    recept3.voeg_ingredient_toe(Ingredient("Hamburgerbroodje", 2, "stuks", 300))
+    recept3.voeg_ingredient_toe(Ingredient("Hamburger", 2, "stuks", 500))
+    recept3.voeg_ingredient_toe(Ingredient("Mayo", 1, "el", 100))
+    recept3.voeg_ingredient_toe(Ingredient("Curry", 1, "el", 50))
+    recept3.voeg_ingredient_toe(Ingredient("Ui", 0.5, "stuk", 40))
 
     recept3.voeg_stap_toe(Stap("Snijd de ui in ringen en bak deze in een pan met een beetje olie totdat ze goudbruin zijn."))
     recept3.voeg_stap_toe(Stap("Bak de hamburgers in een pan of op de grill totdat ze gaar zijn."))
@@ -66,21 +76,61 @@ def init():
 
     mijn_receptenboek.voeg_recept_toe(recept3)
 
+def vraag_recept_index():
+    while True:
+        try:
+            keuze = int(input(f"Welk recept wil je zien? (Typ het nummer): "))
+            return keuze - 1
+        except ValueError:
+            print(f"{color('Voer alstublieft een geldig nummer in.', Colors.ERROR)}")
+
+def vraag_aantal_personen():
+    invoer = input(
+        f"Voor hoeveel personen wil je het recept aanpassen? "
+        f"(Druk {color('Enter', Colors.WARNING)} voor {color('1', Colors.WARNING)} persoon): "
+    )
+
+    if invoer == "":
+        return 1
+
+    try:
+        personen = int(invoer)
+        if personen > 0:
+            return personen
+    except ValueError:
+        pass
+
+    print(f"{color('Ongeldige invoer. Recept wordt voor 1 persoon weergegeven.', Colors.WARNING)}")
+    return 1
+
+def vraag_plantaardig():
+    while True:
+        invoer = input(f"Wil je een plantaardig alternatief? ({color('ja', Colors.OK)}/{color('nee', Colors.ERROR)}): ").lower()
+
+        if invoer in ["ja", "nee"]:
+            return invoer == "ja"
+
+        print(f"{color('Ongeldige invoer. Typ \'ja\' of \'nee\'.', Colors.WARNING)}")
+
 def main():
     init()
 
     print(mijn_receptenboek.get_recepten())
 
-    user_input = input("Welk recept wil je zien? (Typ het nummer): ")
-    try:
-        index = int(user_input) - 1
-        recept_namen = list(mijn_receptenboek.recepten.keys())
-        if 0 <= index < len(recept_namen):
-            gekozen_recept = mijn_receptenboek.get_recept(recept_namen[index])
-            print(gekozen_recept)
-        else:
-            print("Ongeldige keuze.")
-    except ValueError:
-        print("Voer alstublieft een geldig nummer in.")
+    index = vraag_recept_index()
+    recept_namen = list(mijn_receptenboek.recepten.keys())
+
+    if 0 <= index < len(recept_namen):
+        gekozen_recept = mijn_receptenboek.get_recept(recept_namen[index])
+
+        personen = vraag_aantal_personen()
+        gekozen_recept.set_aantal_personen(personen)
+
+        plantaardig = vraag_plantaardig()
+        gekozen_recept.set_plantaardig(plantaardig)
+
+        print("\n" + str(gekozen_recept))
+    else:
+        print(color("Ongeldige keuze.", Colors.ERROR))
 
 main()
