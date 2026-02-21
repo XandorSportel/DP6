@@ -14,10 +14,10 @@ def init():
 
     # Recept 1: Pannenkoeken
     recept1 = Recept("Pannenkoeken", "Heerlijke Nederlandse pannenkoeken")
-    recept1.voeg_ingredient_toe(Ingredient("Koopmans Pannenkoekmeel Kabouter", 500, "gram"))
-    recept1.voeg_ingredient_toe(Ingredient("Melk", 1000, "ml"))
-    recept1.voeg_ingredient_toe(Ingredient("Eieren", 2, "stuks"))
-    recept1.voeg_ingredient_toe(Ingredient("Zout", 1, "snufje"))
+    recept1.voeg_ingredient_toe(Ingredient("Koopmans Pannenkoekmeel Kabouter", 500, "gram", 890))
+    recept1.voeg_ingredient_toe(Ingredient("Melk", 1000, "ml", 650))
+    recept1.voeg_ingredient_toe(Ingredient("Eieren", 2, "stuks", 140))
+    recept1.voeg_ingredient_toe(Ingredient("Zout", 1, "snufje", 0))
 
     recept1.voeg_stap_toe(Stap("Doe 500 gram van het meel in een beslagkom en voeg de melk, de eieren en het zout toe."))
     recept1.voeg_stap_toe(Stap("Roer het geheel met een garde of mixer tot een glad beslag."))
@@ -29,16 +29,16 @@ def init():
 
     # Recept 2: Kip Rendang
     recept2 = Recept("Kip Rendang", "Een smaakvol Indonesisch gerecht")
-    recept2.voeg_ingredient_toe(Ingredient("Kip", 300, "gram"))
-    recept2.voeg_ingredient_toe(Ingredient("Kokosmelk", 200, "ml"))
-    recept2.voeg_ingredient_toe(Ingredient("Stengel citroengras", 1, "stuk"))
-    recept2.voeg_ingredient_toe(Ingredient("Ui", 1, "stuk"))
-    recept2.voeg_ingredient_toe(Ingredient("Knoflook", 2, "tenen"))
-    recept2.voeg_ingredient_toe(Ingredient("Gember", 1, "stuk"))
-    recept2.voeg_ingredient_toe(Ingredient("Ketjap manis", 25, "ml"))
-    recept2.voeg_ingredient_toe(Ingredient("Komijn", 1, "tl"))
-    recept2.voeg_ingredient_toe(Ingredient("Koriander", 1, "tl"))
-    recept2.voeg_ingredient_toe(Ingredient("Zout en peper", 1, "snufje"))
+    recept2.voeg_ingredient_toe(Ingredient("Kip", 300, "gram", 600))
+    recept2.voeg_ingredient_toe(Ingredient("Kokosmelk", 200, "ml", 400))
+    recept2.voeg_ingredient_toe(Ingredient("Stengel citroengras", 1, "stuk", 5))
+    recept2.voeg_ingredient_toe(Ingredient("Ui", 1, "stuk", 40))
+    recept2.voeg_ingredient_toe(Ingredient("Knoflook", 2, "tenen", 10))
+    recept2.voeg_ingredient_toe(Ingredient("Gember", 1, "stuk", 5))
+    recept2.voeg_ingredient_toe(Ingredient("Ketjap manis", 25, "ml", 70))
+    recept2.voeg_ingredient_toe(Ingredient("Komijn", 1, "tl", 8))
+    recept2.voeg_ingredient_toe(Ingredient("Koriander", 1, "tl", 5))
+    recept2.voeg_ingredient_toe(Ingredient("Zout en peper", 1, "snufje", 0))
 
     recept2.voeg_stap_toe(Stap("Schil de gember en snijd vervolgens in kleine stukjes. Snipper de uit, snijd de tenen knoflook fijn en snijd de sereh in stukken."))
     recept2.voeg_stap_toe(Stap("Doe vervolgens de gember, ui, knoflook en sereh samen met de rode peper, koriander, komijn en een scheutje olijfolie in een keukenmachine. Hak alles tot er een soort kruidenpasta overblijft."))
@@ -52,11 +52,11 @@ def init():
 
     # Recept 3: Broodje Hamburger
     recept3 = Recept("Broodje Hamburger", "Een lekker broodje hamburger")
-    recept3.voeg_ingredient_toe(Ingredient("Hamburgerbroodje", 2, "stuks"))
-    recept3.voeg_ingredient_toe(Ingredient("Hamburger", 2, "stuks"))
-    recept3.voeg_ingredient_toe(Ingredient("Mayo", 1, "el"))
-    recept3.voeg_ingredient_toe(Ingredient("Curry", 1, "el"))
-    recept3.voeg_ingredient_toe(Ingredient("Ui", 0.5, "stuk"))
+    recept3.voeg_ingredient_toe(Ingredient("Hamburgerbroodje", 2, "stuks", 300))
+    recept3.voeg_ingredient_toe(Ingredient("Hamburger", 2, "stuks", 500))
+    recept3.voeg_ingredient_toe(Ingredient("Mayo", 1, "el", 100))
+    recept3.voeg_ingredient_toe(Ingredient("Curry", 1, "el", 50))
+    recept3.voeg_ingredient_toe(Ingredient("Ui", 0.5, "stuk", 40))
 
     recept3.voeg_stap_toe(Stap("Snijd de ui in ringen en bak deze in een pan met een beetje olie totdat ze goudbruin zijn."))
     recept3.voeg_stap_toe(Stap("Bak de hamburgers in een pan of op de grill totdat ze gaar zijn."))
