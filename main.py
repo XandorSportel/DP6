@@ -78,13 +78,20 @@ def main():
 
     print(mijn_receptenboek.get_recepten())
 
-    user_input = input("Welk recept wil je zien? (Typ het nummer): ")
+    recept_number = input("Welk recept wil je zien? (Typ het nummer): ")
+    aantal_personen = input("Voor hoeveel personen wil je het recept aanpassen? (Typ een getal, of druk op Enter om het recept voor 1 persoon te krijgen): ")
+    plantaardig = input("Wil je een plantaardige versie van het recept? (Typ 'ja' of 'nee'): ").lower() == 'ja'
+
     try:
-        index = int(user_input) - 1
+        index = int(recept_number) - 1
         recept_namen = list(mijn_receptenboek.recepten.keys())
         if 0 <= index < len(recept_namen):
             gekozen_recept = mijn_receptenboek.get_recept(recept_namen[index])
-            print(gekozen_recept)
+            if aantal_personen:
+                gekozen_recept.set_aantal_personen(int(aantal_personen))
+            if plantaardig:
+                gekozen_recept.set_plantaardig(True)
+            print("\n" + str(gekozen_recept))
         else:
             print("Ongeldige keuze.")
     except ValueError:
