@@ -21,4 +21,12 @@ class Recept:
         self.__stappen.append(stap)
 
     def __str__(self):
-        return f"Recept: {self.__naam}\nOmschrijving: {self.__omschrijving}\nIngredienten: {', '.join(self.__ingredienten)}\nStappen: {'; '.join(self.__stappen)}"
+        ingredienten = "\n".join(f"• {str(i)}" for i in self.__ingredienten)
+        stappen = '; '.join(f"{i+1}. {str(s)}" for i, s in enumerate(self.__stappen))
+    
+        return (
+            f"Recept: {self.__naam}\n"
+            f"Omschrijving: {self.__omschrijving}\n"
+            f"Ingredienten: \n{ingredienten}\n"
+            f"Stappen: \n{stappen}"
+        )
