@@ -25,6 +25,9 @@ class Recept:
     def get_stappen(self):
         return self.__stappen
     
+    def is_plantaardig(self):
+        return self.__plantaardig
+    
     def set_aantal_personen(self, personen):
         factor = personen / self.__aantal_personen
 

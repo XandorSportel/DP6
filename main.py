@@ -3,8 +3,9 @@ from src.classes.Receptenboek import Receptenboek
 from src.classes.Ingredient import Ingredient
 from src.classes.Stap import Stap
 
-from src.helpers.formatter import color
 from src.console.Colors import Colors
+from src.helpers.formatter import color
+from src.helpers.pdf_generator import genereer_recept_pdf
 
 # Globals
 mijn_receptenboek = None
@@ -41,7 +42,8 @@ def toon_overzicht():
 
         print("\n" + f"{color('='*20, Colors.INFO)} {color('Opties', Colors.HEADER)} {color('='*20, Colors.INFO)}")
         print(f"{color('1', Colors.ERROR)}. Verwijder dit recept")
-        print(f"{color('2', Colors.OK)}. Terug naar overzicht")
+        print(f"{color('2', Colors.INFO)}. Genereer PDF van dit recept")
+        print(f"{color('3', Colors.OK)}. Terug naar overzicht")
         print(f"{color('='*48, Colors.INFO)}")
 
         keuze = input("Maak een keuze: ")
@@ -51,8 +53,15 @@ def toon_overzicht():
             if bevestig == "ja":
                 mijn_receptenboek.verwijder_recept(gekozen_recept.get_naam())
                 print(color("Recept verwijderd.", Colors.OK))
+
+        elif keuze == "2":
+            bestandnaam = f"{gekozen_recept.get_naam().replace(' ', '_')}.pdf"
+            genereer_recept_pdf(gekozen_recept, bestandnaam)
+            print(color(f"PDF gegenereerd: {bestandnaam}", Colors.OK))
+
     elif index == len(recept_namen):
         return
+    
     else:
         print(color("Ongeldige keuze.", Colors.ERROR))
 
