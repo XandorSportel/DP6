@@ -59,7 +59,10 @@ class Recept:
         return (
             f"{color('Recept:', Colors.INFO)} {self.__naam}\n"
             f"{color('Omschrijving:', Colors.INFO)} {self.__omschrijving}\n"
-            f"{color('Aantal personen:', Colors.INFO)} {self.__aantal_personen}\n\n"
+            f"{color('Aantal personen:', Colors.INFO)} {self.__aantal_personen}\n"
+            f"{color('Plantaardig:', Colors.INFO)} {'Ja' if self.__plantaardig else 'Nee'}\n"
+            f"{color('Aantal Kcal:', Colors.INFO)} {sum(ingredient.get_kcal() for ingredient in self.__ingredienten)} kcal\n"
+            f"{color('Aantal Kcal per persoon:', Colors.INFO)} {sum(ingredient.get_kcal() for ingredient in self.__ingredienten) / self.__aantal_personen:.2f} kcal\n\n"
             f"{color('Ingredienten:', Colors.INFO)}\n{ingredienten}\n\n"
             f"{color('Stappen:', Colors.INFO)}\n{stappen}\n"
         )
