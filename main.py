@@ -80,9 +80,19 @@ def voeg_recept_toe_via_input():
             break
 
         ingredient_naam = input("Naam ingrediënt: ")
-        hoeveelheid = float(input("Hoeveelheid: "))
+        hoeveelheid = None
+        try:
+            hoeveelheid = float(input("Hoeveelheid: "))
+        except ValueError:
+            print(color("Ongeldige hoeveelheid. Probeer het opnieuw.", Colors.ERROR))
+            continue
         eenheid = input("Eenheid: ")
-        kcal = int(input("Aantal kcal: "))
+        kcal = None
+        try:
+            kcal = int(input("Aantal kcal: "))
+        except ValueError:
+            print(color("Ongeldige kcal waarde. Probeer het opnieuw.", Colors.ERROR))
+            continue
 
         ingredient = Ingredient(ingredient_naam, hoeveelheid, eenheid, kcal)
 
@@ -90,7 +100,12 @@ def voeg_recept_toe_via_input():
         alternatief_keuze = input(f"Plantaardig alternatief toevoegen? ({color('ja', Colors.OK)}/{color('nee', Colors.ERROR)}): ").lower()
         if alternatief_keuze == "ja":
             alternatief_naam = input("Naam alternatief: ")
-            alternatief_hoeveelheid = float(input("Hoeveelheid alternatief: "))
+            alternatief_hoeveelheid = None
+            try:
+                alternatief_hoeveelheid = float(input("Hoeveelheid alternatief: "))
+            except ValueError:
+                print(color("Ongeldige hoeveelheid. Probeer het opnieuw.", Colors.ERROR))
+                continue
             alternatief_eenheid = input("Eenheid alternatief: ")
             alternatief_kcal = int(input("Aantal kcal alternatief: "))
 
