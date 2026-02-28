@@ -14,8 +14,8 @@ def init():
     global mijn_receptenboek
 
     # Maak een receptenboek aan
-    # Vraag de gebruiker of ze recepten willen laden vanuit de database
-    laad_uit_db = True
+    # Zet load_from_db op True om recepten uit de database te laden, of op False om met lege receptenboek te starten en handmatig recepten toe te voegen
+    laad_uit_db = False
     mijn_receptenboek = Receptenboek(load_from_db=laad_uit_db)
 
     if laad_uit_db == False:
