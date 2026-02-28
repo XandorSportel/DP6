@@ -3,6 +3,11 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import A4
 import os
+import re
+
+def strip_ansi(text):
+    ansi_escape = re.compile(r'\x1B[@-_][0-?]*[ -/]*[@-~]')
+    return ansi_escape.sub('', text)
 
 def genereer_recept_pdf(recept, bestandsnaam=None):
     export_map = "exports"
@@ -61,7 +66,7 @@ def genereer_recept_pdf(recept, bestandsnaam=None):
     elements.append(Spacer(1, 0.2 * inch))
 
     stappen = [
-        Paragraph(str(stap), normal_style)
+        Paragraph(strip_ansi(str(stap)), normal_style)
         for stap in recept.get_stappen()
     ]
 
