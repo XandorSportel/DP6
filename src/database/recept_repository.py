@@ -11,7 +11,7 @@ class ReceptRepository:
         cursor = self.db.connection.cursor(dictionary=True)
 
         cursor.execute(
-            "INSERT INTO recepten (naam, omschrijving) VALUES (%s, %s)",
+            "INSERT IGNORE INTO recepten (naam, omschrijving) VALUES (%s, %s)",
             (recept.get_naam(), recept.get_omschrijving())
         )
         recept_id = cursor.lastrowid

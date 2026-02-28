@@ -3,10 +3,12 @@ from src.database.recept_repository import ReceptRepository
 from src.helpers.formatter import color
 
 class Receptenboek:
-    def __init__(self):
+    def __init__(self, load_from_db=False):
         self.repository = ReceptRepository()
         self.recepten = {}
-        self.load_from_database()
+        self.load_from_db = load_from_db
+        if load_from_db:
+            self.load_from_database()
 
     def load_from_database(self):
         recepten = self.repository.get_all()
@@ -14,7 +16,9 @@ class Receptenboek:
             self.recepten[recept.get_naam()] = recept
 
     def voeg_recept_toe(self, recept):
-        self.repository.save(recept)
+        if recept.get_naam() not in self.recepten:
+            if self.load_from_db:
+                self.repository.save(recept)
         self.recepten[recept.get_naam()] = recept
 
     def get_recept(self, naam):
