@@ -129,7 +129,9 @@ def voeg_recept_toe_via_input():
             nieuw_recept.voeg_stap_toe(Stap(beschrijving, tip))
 
     mijn_receptenboek.voeg_recept_toe(nieuw_recept)
+
     print(color("Recept succesvol toegevoegd.", Colors.OK))
+    print("\n" + str(nieuw_recept))
 
 def vraag_recept_index():
     while True:
